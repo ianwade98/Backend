@@ -1,0 +1,12 @@
+body{
+    background:  #202020;
+    display: flex;
+}
+main{
+    display: flex;
+    justify-content: center;
+}
+h1{
+    color: white;
+    display: flex;   
+}
