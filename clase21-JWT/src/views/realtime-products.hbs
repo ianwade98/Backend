@@ -1,0 +1,88 @@
+{{> navbar}}
+
+<div class="w-full">
+    <div class="w-full flex items-center justify-center">
+        <h2 class="text-white text-xl font-extrabold uppercase border-cyan-300 border-b-8">Productos en tiempo real</h2>
+    </div>
+</div>
+
+<div class="w-full my-2 rounded-md">
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left">
+            <thead class="bg-neutral-800 text-xs uppercase whitespace-nowrap">
+                <tr>
+                    <th class="py-3 px-6">title</th>
+                    <th class="py-3 px-6">description</th>
+                    <th class="py-3 px-6">code</th>
+                    <th class="py-3 px-6">price</th>
+                    <th class="py-3 px-6">status</th>
+                    <th class="py-3 px-6">stock</th>
+                    <th class="py-3 px-6">category</th>
+                    <th class="py-3 px-6"></th>
+                </tr>
+            </thead>
+            <tbody id="products-container">
+                {{!-- Lista de Productos --}}
+            </tbody>
+        </table>
+    </div>
+
+    <button class="bg-violet-500 text-white mt-3 py-2 px-4 rounded-md" id="btn-open-form">Nuevo producto</button>
+</div>
+
+<div class="bg-black bg-opacity-30 w-screen h-screen fixed top-0 left-0 flex items-center justify-center hidden" id="container-form">
+    <form class="bg-white w-4/5 md:w-96 p-4 rounded-md" id="form-new-product">
+        <div class="w-full flex items-center justify-center relative">
+            <h2 class="text-violet-500 text-xl font-extrabold uppercase border-cyan-300 border-b-8">Nuevo Producto</h2>
+
+            <div class="absolute h-full p-2 right-0 rounded-md flex items-center justify-center shadow-lg" id="btn-close-form" role="button">
+                <svg class="text-red-500 w-6 h-w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div class="w-full flex flex-col items-start justify-start">
+                <label class="text-gray-400 uppercase font-medium text-sm" for="title">Nombre</label>
+                <input class="bg-gray-100 w-full p-1 outline-violet-500 focus:bg-violet-500 focus:text-white placeholder:text-violet-400 focus:placeholder:text-cyan-100" type="text" placeholder="Producto..." name="title">
+            </div>
+            <div class="w-full flex flex-col items-start justify-start">
+                <label class="text-gray-400 uppercase font-medium text-sm" for="description">Descripcion</label>
+                <input class="bg-gray-100 w-full p-1 outline-violet-500 focus:bg-violet-500 focus:text-white placeholder:text-violet-400 focus:placeholder:text-cyan-100" type="text" placeholder="Descripcion..." name="description">
+            </div>
+            <div class="w-full flex flex-col items-start justify-start">
+                <label class="text-gray-400 uppercase font-medium text-sm" for="code">Codigo</label>
+                <input class="bg-gray-100 w-full p-1 uppercase outline-violet-500 focus:bg-violet-500 focus:text-white placeholder:text-violet-400 focus:placeholder:text-cyan-100" type="text" placeholder="Codigo..." name="code">
+            </div>
+            <div class="w-full flex flex-col items-start justify-start">
+                <label class="text-gray-400 uppercase font-medium text-sm" for="price">Precio</label>
+                <input class="bg-gray-100 w-full p-1 outline-violet-500 focus:bg-violet-500 focus:text-white placeholder:text-violet-400 focus:placeholder:text-cyan-100" type="number" placeholder="0.00" name="price">
+            </div>
+            <div class="w-full flex flex-col items-start justify-start">
+                <label class="text-gray-400 uppercase font-medium text-sm" for="stock">Stock</label>
+                <input class="bg-gray-100 w-full p-1 outline-violet-500 focus:bg-violet-500 focus:text-white placeholder:text-violet-400 focus:placeholder:text-cyan-100" type="number" placeholder="00" name="stock">
+            </div>
+            <div class="w-full flex flex-col items-start justify-start">
+                <label class="text-gray-400 uppercase font-medium text-sm" for="category">Categoria</label>
+                <input class="bg-gray-100 w-full p-1 outline-violet-500 focus:bg-violet-500 focus:text-white placeholder:text-violet-400 focus:placeholder:text-cyan-100" type="text" placeholder="Categoria..." name="category">
+            </div>
+            <div class="w-full flex flex-col items-start justify-start">
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input class="sr-only peer" type="checkbox" name="status">
+                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-violet-300 dark:peer-focus:ring-violet-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+                    <span class="text-violet-500 text-xs uppercase font-bold px-2">Status</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="w-full flex items-center justify-center mt-4">
+            <button class="bg-violet-500 text-white text-sm font-bold uppercase py-2 px-4 rounded-md" type="submit">Guardar</button>
+        </div>
+    </form>
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realtimeproducts.js" type="module"></script>
