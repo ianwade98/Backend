@@ -1,0 +1,28 @@
+{{#each product }}
+    {{#if this.title }}
+        <h1>{{this.title}}</h1>
+        <hr>
+    {{/if}}
+    <div class="product-card-detail">
+        <div class="product-detail">
+            {{#if this.description }}
+                <h2>{{this.description}}</h2>
+            {{/if}}
+            {{#if this.code }}
+                <p>{{this.code}}</p>
+            {{/if}}
+            {{#if this.price }}
+                <p>Precio:{{this.price}}</p>
+            {{/if}}
+            {{#if this.stock }}
+                <p>Stock: {{this.stock}}</p>
+            {{/if}}
+            {{#if this.category }}
+                <p>Categoría: {{this.category}}</p>
+                <button class="add-to-cart" data-id="{{this._id}}">Agregar al carrito</button>
+            {{/if}}
+        </div>
+    </div>
+{{/each}}
+
+<script src="/js/products.js"></script>
